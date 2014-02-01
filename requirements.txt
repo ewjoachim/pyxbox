@@ -1,0 +1,2 @@
+pyFluidSynth==1.2.4
+-e hg+http://bitbucket.org/pygame/pygame
