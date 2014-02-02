@@ -5,7 +5,7 @@ class Game(object):
     """
     Base game set : an inifinite loop
     This is to be inherited, with the methods
-    prepare and loop overridden
+    prepare, loop and cleanup overridden
     """
     def __init__(self, fps=50):
         self.clock = pygame.time.Clock()
@@ -21,6 +21,12 @@ class Game(object):
     def loop(self):
         """
         Called at every "frame"
+        """
+        raise NotImplementedError()
+
+    def cleanup(self):
+        """
+        Called at the end.
         """
         raise NotImplementedError()
 
@@ -40,6 +46,7 @@ class Game(object):
                 self.clock.tick(self.fps)
         except KeyboardInterrupt:
             pass
+        self.cleanup()
         pygame.quit()
 
 

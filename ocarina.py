@@ -11,7 +11,7 @@ class Ocarina(Game):
     """
     def prepare(self):
         self.controller = XBoxController()
-        self.music = MusicManager()
+        self.music = MusicManager("instrument.sf2")
         self.notes = {
             "rs": self.music.note(4),
             "a": self.music.note(7), 
@@ -30,12 +30,14 @@ class Ocarina(Game):
                 note.set(stick_on)
 
         self.controller.add_callbacks(
-            ["x_prs", "y_prs", "a_prs", "b_prs",
-            "x_rel", "y_rel", "a_rel", "b_rel"], buttons_cb)
+            ["x", "y", "a", "b"], buttons_cb)
         self.controller.add_callback("rs", analog_cb)
 
     def loop(self):
         self.controller.loop()
+
+    def cleanup(self):
+        self.music.end()
 
 
 def main():
