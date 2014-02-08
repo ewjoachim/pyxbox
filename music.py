@@ -19,12 +19,12 @@ class Note(object):
 
     It's just for fun, though.
 
-    val 0 is for C, on octave 3. Each val up is a half-tone. You can have a val above
+    note_val 0 is for C, on octave 3. Each note_val up is a half-tone. You can have a note_val above
     12 or below zero, or use the octave parameter (or both)
     """
-    def __init__(self, music_manager, val, octave=3):
+    def __init__(self, music_manager, note_val=0, octave=3, midi_val=None):
         self.music_manager = music_manager
-        self.midi_number = 22 + (octave * 12) + val
+        self.midi_number = (22 + (octave * 12) + note_val) if midi_val is None else midi_val
         self.active = False
 
     def on(self):
